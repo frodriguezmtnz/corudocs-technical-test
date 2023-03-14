@@ -3,20 +3,29 @@
   command = "hugo --gc --minify"
 
 [build.environment]
-  HUGO_THEME = "repo"
   HUGO_VERSION = "0.111.3"
+  HUGO_BASEURL = "/"
 
-[context.production.environment]
-  HUGO_BASEURL = "https://corudocsbyfelipe.netlify.app/"
+[[headers]]
+  for = "/*" # This defines which paths this specific [[headers]] block will cover.
 
-[context.deploy-preview]
-  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+[headers.values]
+  X-Frame-Options = "DENY"
+  X-XSS-Protection = "1; mode=block"
+  Referrer-Policy = "same-origin"
+  Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
-[context.deploy-preview.environment]
-  HUGO_ENABLEGITINFO = "true"
+# [context.production.environment]
+#   HUGO_BASEURL = "https://corudocsbyfelipe.netlify.app/"
 
-[context.branch-deplpy]
-  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+# [context.deploy-preview]
+#   command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
-[context.branch-deploy.environment]
-  HUGO_ENABLEGITINFO = "true"
+# [context.deploy-preview.environment]
+#   HUGO_ENABLEGITINFO = "true"
+
+# [context.branch-deplpy]
+#   command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
+
+# [context.branch-deploy.environment]
+#   HUGO_ENABLEGITINFO = "true"
