@@ -1,23 +1,22 @@
 [build]
-  publish = "exampleSite/public"
-  command = "hugo -s exampleSite"
+  publish = "public"
+  command = "hugo --gc --minify"
 
 [build.environment]
   HUGO_THEME = "repo"
-  HUGO_THEMESDIR = "/opt/build"
   HUGO_VERSION = "0.111.3"
 
 [context.production.environment]
-  HUGO_BASEURL = "https://learn.netlify.app/"
+  HUGO_BASEURL = "https://corudocsbyfelipe.netlify.app/"
 
 [context.deploy-preview]
-  command = "hugo -s exampleSite -b $DEPLOY_PRIME_URL"
+  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [context.deploy-preview.environment]
   HUGO_ENABLEGITINFO = "true"
 
 [context.branch-deplpy]
-  command = "hugo -s exampleSite -b $DEPLOY_PRIME_URL"
+  command = "hugo --gc --minify -b $DEPLOY_PRIME_URL"
 
 [context.branch-deploy.environment]
   HUGO_ENABLEGITINFO = "true"
